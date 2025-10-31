@@ -1,32 +1,64 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const categories = [
+    {
+      id: 'student',
+      icon: 'fas fa-graduation-cap',
+      title: 'Student Section',
+      description: 'Scholarships, Education Loans, Skill Development Programs',
+      path: '/student'
+    },
+    {
+      id: 'senior',
+      icon: 'fas fa-user-friends',
+      title: 'Senior Citizen Section',
+      description: 'Pension Schemes, Health Benefits, Travel Concessions',
+      path: '/senior'
+    },
+    {
+      id: 'women',
+      icon: 'fas fa-female',
+      title: 'Women Section',
+      description: 'Entrepreneurship, Safety Schemes, Maternity Benefits',
+      path: '/women'
+    },
+    {
+      id: 'farmer',
+      icon: 'fas fa-seedling',
+      title: 'Farmer Section',
+      description: 'Crop Insurance, Kisan Credit, Irrigation Schemes',
+      path: '/farmer'
+    }
+  ];
+
   return (
-    <div className="page">
-      <div className="container">
-        <div className="hero">
-          <h1>Welcome to Government Portal</h1>
-          <p>Your gateway to government services and information</p>
-        </div>
+    <div className="container">
+      <div className="hero">
+        <h2>Government Schemes & Benefits Portal</h2>
+        <p>Your gateway to authentic government schemes and benefits</p>
         
-        <div className="services-grid">
-          <div className="service-card">
-            <h3>Student Services</h3>
-            <p>Scholarships, education loans, and academic resources</p>
-          </div>
-          <div className="service-card">
-            <h3>Senior Citizen Services</h3>
-            <p>Pension schemes, healthcare, and welfare programs</p>
-          </div>
-          <div className="service-card">
-            <h3>Women Empowerment</h3>
-            <p>Support programs, safety initiatives, and career development</p>
-          </div>
-          <div className="service-card">
-            <h3>Farmer Support</h3>
-            <p>Agricultural subsidies, crop insurance, and farming assistance</p>
-          </div>
+        <div className="auth-buttons">
+          <Link to="/login" className="auth-link login-btn">
+            <i className="fas fa-sign-in-alt"></i> Login
+          </Link>
+          <Link to="/signup" className="auth-link signup-btn">
+            <i className="fas fa-user-plus"></i> Sign Up
+          </Link>
         </div>
+      </div>
+      
+      <div className="cards-grid">
+        {categories.map(category => (
+          <Link to={category.path} key={category.id} className="card">
+            <div className="card-icon">
+              <i className={category.icon}></i>
+            </div>
+            <h3>{category.title}</h3>
+            <p>{category.description}</p>
+          </Link>
+        ))}
       </div>
     </div>
   );
